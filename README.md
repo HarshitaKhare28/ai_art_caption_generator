@@ -1,1 +1,1 @@
-# -ai_art_caption_generator
+# ai_art_caption_generator
