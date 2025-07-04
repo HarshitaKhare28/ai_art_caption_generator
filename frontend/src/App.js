@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UploadForm from "./components/UploadForm";
-import CaptionDisplay from "./components/CaptionDisplay";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -22,21 +23,25 @@ function App() {
       setCaption(data.caption);
     } catch (err) {
       console.error(err);
-      alert("Failed to get caption.");
+      setCaption("Failed to generate caption.");
     }
     setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <h1 className="text-2xl font-bold mb-4">🖼️ AI Caption Generator</h1>
-      <UploadForm
-        onFileChange={setFile}
-        onUpload={handleUpload}
-        loading={loading}
-        disabled={!file || loading}
-      />
-      <CaptionDisplay caption={caption} />
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-gray-700">
+      <Navbar />
+      <div className="flex-grow">
+        <UploadForm
+          onFileChange={(f) => setFile(f)}
+          onUpload={handleUpload}
+          loading={loading}
+          disabled={!file || loading}
+          fileName={file ? file.name : null}
+          caption={caption}
+        />
+      </div>
+      <Footer />
     </div>
   );
 }
