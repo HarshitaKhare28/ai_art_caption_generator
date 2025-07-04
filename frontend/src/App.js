@@ -11,6 +11,7 @@ function App() {
   const handleUpload = async () => {
     if (!file) return;
     setLoading(true);
+
     const formData = new FormData();
     formData.append("file", file);
 
@@ -18,14 +19,21 @@ function App() {
       const response = await fetch("https://ai-art-caption-generator.onrender.com/generate-caption", {
         method: "POST",
         body: formData,
+        credentials: "include", 
+        mode: "cors"  
       });
-      
+
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+
       const data = await response.json();
       setCaption(data.caption);
     } catch (err) {
       console.error(err);
       setCaption("Failed to generate caption.");
     }
+
     setLoading(false);
   };
 
