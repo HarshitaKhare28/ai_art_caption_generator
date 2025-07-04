@@ -16,6 +16,10 @@ app.add_middleware(
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
 
+@app.get("/")
+async def root():
+    return {"message": "Backend is running!"}
+
 @app.post("/generate-caption")
 async def generate_caption(file: UploadFile = File(...)):
     try:

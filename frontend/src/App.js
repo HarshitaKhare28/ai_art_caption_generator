@@ -15,11 +15,12 @@ function App() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/generate-caption", {
+      const response = await fetch("https://ai-art-caption-generator.onrender.com/generate-caption", {
         method: "POST",
         body: formData,
       });
-      const data = await res.json();
+      
+      const data = await response.json();
       setCaption(data.caption);
     } catch (err) {
       console.error(err);
