@@ -21,7 +21,6 @@ async def generate_caption(file: UploadFile = File(...)):
     try:
         image = Image.open(file.file).convert('RGB')
         
-        # 🧠 Instead of forcing prompt, pass empty string to let model do its best
         inputs = processor(images=image, text="", return_tensors="pt")
         
         out = model.generate(

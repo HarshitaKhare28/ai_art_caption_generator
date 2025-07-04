@@ -1,4 +1,4 @@
-// CaptionDisplay.js
+
 import React from "react";
 
 function CaptionDisplay({ caption }) {
