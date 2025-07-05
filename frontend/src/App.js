@@ -19,7 +19,6 @@ function App() {
       const response = await fetch("https://ai-art-caption-generator.onrender.com/generate-caption", {
         method: "POST",
         body: formData,
-        credentials: "include", 
         mode: "cors"  
       });
 
